@@ -9,11 +9,16 @@ export default class Dot {
             },
             gravity: 0.1,
             color: this.randomColor(),
-            size:this.randomSize()
+            size:this.randomSize(),
+            isDead : false
         };
     }
 
     move() {
+        if(this.props.y < 0 || this.props.y > 1000 || this.props.x < 0 || this.props.x > 1000){
+            this.props.isDead = true;
+        }
+
         this.props.vel.y += this.props.gravity;
     
         this.props.x += this.props.vel.x;

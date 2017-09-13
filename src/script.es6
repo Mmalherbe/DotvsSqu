@@ -21,6 +21,8 @@ class Controller {
     }
 
     loop() {
+
+        if(this.squs.length < 2000 && this.dots.length < 2000){
 if((Math.random() ) > 0.5){
     this.squs.push(new Squ(this.mousePos.x,this.mousePos.y));
 
@@ -28,6 +30,7 @@ if((Math.random() ) > 0.5){
     this.dots.push(new Dot(this.mousePos.x, this.mousePos.y));
 
 }
+        }
 
 
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
@@ -39,7 +42,17 @@ if((Math.random() ) > 0.5){
             dot.move();
             dot.draw(this.context);
         });
-    
+
+        this.dots = this.dots.filter( dot => {
+            return !dot.props.isDead;
+        });
+
+
+        this.squs = this.squs.filter( squ => {
+            return !squ.props.isDead;
+        });
+
+
         window.requestAnimationFrame(() => {
             this.loop();
         });
