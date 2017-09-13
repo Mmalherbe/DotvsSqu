@@ -15,7 +15,7 @@ export default class Dot {
     }
 
     move() {
-        if(this.props.y < 0 || this.props.y > 1000 || this.props.x < 0 || this.props.x > 1000){
+        if(this.props.y < 0 || this.props.y > window.innerWidth || this.props.x < 0 || this.props.x > window.innerWidth){
             this.props.isDead = true;
         }
 
@@ -41,4 +41,5 @@ export default class Dot {
     randomSize(){
         return Math.floor(Math.random()*10);
     }
+
 }
